@@ -21,8 +21,9 @@
     Lesser General Public License for more details.
 
     You should have received a copy of the GNU Lesser General Public
-    License along with this library; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301  USA
+    License along with this library; if not, write to the Free
+    Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+    Boston, MA 02110-1301 USA
 
     Note: Language::Guess is GPL-licensed. KDE developers received permission
     from the author to distribute their port under LGPL:
@@ -36,7 +37,6 @@ import re
 import sys
 import unicodedata
 from silpa_common.langdetect import detect_lang
-__all__ = ["LangGuess", "getInstance"]
 
 try:
     from collections import defaultdict
@@ -85,8 +85,11 @@ except:
 
 MIN_LENGTH = 20
 
-BASIC_LATIN = "en_US ceb ha so tlh id haw la sw eu nr nso zu_ZA xh ss st tn ts".split()
-EXTENDED_LATIN = "cs af_ZA pl_PL hr_HR ro sk sl tr hu_HU az et sq ca es fr de nl it_IT da is nb sv fi lv pt ve lt tl cy".split()
+BASIC_LATIN = "en_US ceb ha so tlh id haw la sw" + \
+              " eu nr nso zu_ZA xh ss st tn ts".split()
+EXTENDED_LATIN = "cs af_ZA pl_PL hr_HR ro sk sl tr " + \
+                 "hu_HU az et sq ca es fr de nl it_IT " + \
+                 "da is nb sv fi lv pt ve lt tl cy".split()
 ALL_LATIN = BASIC_LATIN + EXTENDED_LATIN
 CYRILLIC = "ru uk kk uz mn sr mk bg ky".split()
 ARABIC = "ar fa ps ur".split()
@@ -443,7 +446,9 @@ def _identify(sample, scripts):
     if "Cyrillic" in scripts:
         return check(sample, CYRILLIC)
 
-    if "Arabic" in scripts or "Arabic Presentation Forms-A" in scripts or "Arabic Presentation Forms-B" in scripts:
+    if "Arabic" in scripts or \
+       "Arabic Presentation Forms-A" in scripts or \
+       "Arabic Presentation Forms-B" in scripts:
         return check(sample, ARABIC)
 
     if "Devanagari" in scripts:
@@ -522,8 +527,9 @@ def distance(model, knownModel):
 def _makeNonAlphaRe():
     nonAlpha = [u'[^']
     for i in range(sys.maxunicode):
-      c = unichr(i)
-      if c.isalpha(): nonAlpha.append(c)
+        c = unichr(i)
+        if c.isalpha():
+            nonAlpha.append(c)
     nonAlpha.append(u']')
     nonAlpha = u"".join(nonAlpha)
     return re.compile(nonAlpha)
@@ -563,13 +569,15 @@ class LangGuess:
         return lang
 
     def getScriptName(self, text):
-        return dumps(detect_lang(text))
+        return detect_lang(text)
 
     def get_module_name(self):
         return "Guess Language"
 
     def get_info(self):
-        return "Guess the language of given text. This module can detect more than 50 languages. Based on Language::Guess by Maciej Ceglowski(http://languid.cantbedone.org/)"
+        return "Guess the language of given text. This module can" + \
+            "detect more than 50 languages. Based on Language::Guess by" + \
+            "Maciej Ceglowski (http://languid.cantbedone.org/)"
 
 
 def getInstance():
