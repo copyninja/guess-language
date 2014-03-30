@@ -85,11 +85,15 @@ except:
 
 MIN_LENGTH = 20
 
-BASIC_LATIN = "en_US ceb ha so tlh id haw la sw" + \
-              " eu nr nso zu_ZA xh ss st tn ts".split()
-EXTENDED_LATIN = "cs af_ZA pl_PL hr_HR ro sk sl tr " + \
-                 "hu_HU az et sq ca es fr de nl it_IT " + \
-                 "da is nb sv fi lv pt ve lt tl cy".split()
+_BASIC_LATIN = "en_US ceb ha so tlh id haw la sw" + \
+               " eu nr nso zu_ZA xh ss st tn ts"
+_EXTENDED_LATIN = "cs af_ZA pl_PL hr_HR ro sk sl tr " + \
+                  "hu_HU az et sq ca es fr de nl it_IT " + \
+                  "da is nb sv fi lv pt ve lt tl cy"
+
+BASIC_LATIN = [latin for latin in _BASIC_LATIN.split()]
+EXTENDED_LATIN = [elatin for elatin in _EXTENDED_LATIN.split()]
+
 ALL_LATIN = BASIC_LATIN + EXTENDED_LATIN
 CYRILLIC = "ru uk kk uz mn sr mk bg ky".split()
 ARABIC = "ar fa ps ur".split()
